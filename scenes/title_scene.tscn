@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://ovnbuimm0oaa"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_6jsh8"]
+[ext_resource type="Script" uid="uid://dlfrms2xp6dyb" path="res://scenes/title_scene.gd" id="1_faptf"]
+
+[sub_resource type="SystemFont" id="SystemFont_b6ftn"]
+
+[sub_resource type="SystemFont" id="SystemFont_3cm6q"]
+
+[node name="TitleScreen" type="Node2D" unique_id=317790548]
+script = ExtResource("1_faptf")
+metadata/_edit_vertical_guides_ = [1152.0]
+metadata/_edit_horizontal_guides_ = [648.0]
+
+[node name="Background" type="TextureRect" parent="." unique_id=231137308]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(9.001004, 5.068762)
+texture = ExtResource("1_6jsh8")
+
+[node name="Title" type="RichTextLabel" parent="." unique_id=588132710]
+clip_contents = false
+offset_left = 206.0
+offset_top = 74.99999
+offset_right = 756.133
+offset_bottom = 213.92252
+scale = Vector2(1.3669422, 0.8493944)
+theme_override_constants/outline_size = 40
+theme_override_fonts/normal_font = SubResource("SystemFont_b6ftn")
+theme_override_font_sizes/normal_font_size = 108
+text = "GODOT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=365406033]
+offset_left = 169.0
+offset_top = 472.0
+offset_right = 1001.0
+offset_bottom = 516.0
+alignment = 1
+
+[node name="Settings" type="MarginContainer" parent="HBoxContainer" unique_id=1769655017]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Settings" type="Button" parent="HBoxContainer/Settings" unique_id=1536490943]
+layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = SubResource("SystemFont_3cm6q")
+theme_override_font_sizes/font_size = 26
+text = "Settings
+"
+
+[node name="Start Game" type="MarginContainer" parent="HBoxContainer" unique_id=1507542238]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Start" type="Button" parent="HBoxContainer/Start Game" unique_id=1628543658]
+layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = SubResource("SystemFont_3cm6q")
+theme_override_font_sizes/font_size = 26
+text = "Start Game"
+
+[node name="Quit" type="MarginContainer" parent="HBoxContainer" unique_id=280543350]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Quit" type="Button" parent="HBoxContainer/Quit" unique_id=1455376303]
+layout_mode = 2
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = SubResource("SystemFont_3cm6q")
+theme_override_font_sizes/font_size = 26
+text = "Quit
+"
+
+[connection signal="pressed" from="HBoxContainer/Settings/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/Start Game/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Quit/Quit" to="." method="_on_quit_pressed"]
