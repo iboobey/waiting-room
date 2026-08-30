@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://skkn20sotfxd"]
+
+[ext_resource type="Script" uid="uid://bb0ytnds2n53f" path="res://scenes/arcade_scene.gd" id="1_g722h"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_sr0gh"]
+[ext_resource type="PackedScene" uid="uid://mpiuvtpngfod" path="res://player/player.tscn" id="3_u8up3"]
+
+[node name="Node2D" type="Node2D" unique_id=1528780165]
+script = ExtResource("1_g722h")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=501492549]
+modulate = Color(0.14509805, 0.8156863, 0.61960787, 1)
+position = Vector2(592, 459)
+scale = Vector2(2.40625, 2.40625)
+texture = ExtResource("1_sr0gh")
+
+[node name="Node2D" parent="." unique_id=261499602 instance=ExtResource("3_u8up3")]
+position = Vector2(101, 263)
