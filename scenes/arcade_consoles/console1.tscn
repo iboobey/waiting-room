@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b7p45egiiwirr"]
+
+[ext_resource type="Script" uid="uid://b34tv6g7fhybb" path="res://scripts/arcade_consoles/console_1.gd" id="1_jwn1j"]
+[ext_resource type="PackedScene" uid="uid://dhn7832do114r" path="res://interactions/interactable.tscn" id="3_jwn1j"]
+[ext_resource type="Texture2D" uid="uid://5dygrf1p8xby" path="res://graphics/tilesets/Arcade_Console_Tileset.png" id="4_1v7pr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwn1j"]
+radius = 20.024984
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6qla7"]
+texture = ExtResource("4_1v7pr")
+4:0/0 = 0
+2:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+8:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+8:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ki6l1"]
+sources/1 = SubResource("TileSetAtlasSource_6qla7")
+
+[node name="Node2D" type="Node2D" unique_id=526672248]
+script = ExtResource("1_jwn1j")
+
+[node name="Interactable" parent="." unique_id=705641517 instance=ExtResource("3_jwn1j")]
+interact_name = "Interact"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1464799276]
+position = Vector2(-9, 0)
+shape = SubResource("CircleShape2D_jwn1j")
+
+[node name="InteractingLabel" type="Label" parent="." unique_id=456296331]
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 42.0
+offset_bottom = -5.0
+scale = Vector2(0.33687192, 0.33687192)
+text = "interact"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1723013905]
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 1, 0, 2, 0, 1, 0, 0, 0, 255, 255, 0, 0, 1, 0, 2, 0, 2, 0, 0, 0)
+tile_set = SubResource("TileSet_ki6l1")

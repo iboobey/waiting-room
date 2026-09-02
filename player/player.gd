@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var speed = 65
 var sprint_scale = 1.4
+
 @onready var shoe_anim = $CompositeSprites/ShoeRed
 @onready var torso_anim = $CompositeSprites/TorsoGreen
 @onready var short_anim = $CompositeSprites/ShortBlue
@@ -9,8 +10,7 @@ var sprint_scale = 1.4
 @onready var hair_anim = $CompositeSprites/HairCurly
 @onready var cap_anim = $CompositeSprites/CapRed
 
-func _ready() -> void:
-	pass
+
 
 func move():
 	var direction = Input.get_vector("left","right","up","down")
@@ -59,7 +59,7 @@ func walk_animation():
 	
 	
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	walk_animation()
 	move()
 	move_and_slide()

@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://mpiuvtpngfod"]
 
 [ext_resource type="Script" uid="uid://dvfan66kdcoro" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Script" uid="uid://chjjrqmu5x57k" path="res://player/composite_sprites.gd" id="2_boad6"]
+[ext_resource type="Script" uid="uid://chjjrqmu5x57k" path="res://scripts/composite_sprites.gd" id="2_boad6"]
 [ext_resource type="Texture2D" uid="uid://cg4hwo0sdwdtx" path="res://graphics/playersprites/walking/Shoes_Red_Walk.png" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://gtaxdeovvcrc" path="res://graphics/playersprites/walking/Torso_Walk.png" id="4_boad6"]
 [ext_resource type="Texture2D" uid="uid://cgwr5rjsaw5u8" path="res://graphics/playersprites/walking/Shorts_Blue_Walk.png" id="5_rgyib"]
 [ext_resource type="Texture2D" uid="uid://d3ylhcw1oisep" path="res://graphics/playersprites/walking/Head_Walk.png" id="6_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://cnq8bnr6u37e1" path="res://graphics/playersprites/walking/Curly_Hair_Walk.png" id="7_8t03j"]
 [ext_resource type="Texture2D" uid="uid://di4ara1564d4y" path="res://graphics/playersprites/walking/Cap_Red_Walk.png" id="8_2ieo8"]
+[ext_resource type="PackedScene" uid="uid://dnomiqnaun73e" path="res://interactions/interactingcomponent.tscn" id="9_hg6s5"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw30f"]
-radius = 5.0
-height = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgyib"]
+size = Vector2(14, 3.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_68g1w"]
 atlas = ExtResource("8_2ieo8")
@@ -1160,12 +1160,13 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1632771296]
+collision_layer = 2
 script = ExtResource("1_rkbax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=98314499]
 z_index = 10
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_yw30f")
+position = Vector2(0, 10.75)
+shape = SubResource("RectangleShape2D_rgyib")
 
 [node name="CompositeSprites" type="Node2D" parent="." unique_id=2120319744]
 script = ExtResource("2_boad6")
@@ -1173,7 +1174,7 @@ script = ExtResource("2_boad6")
 [node name="CapRed" type="AnimatedSprite2D" parent="CompositeSprites" unique_id=1085114461]
 z_index = 5
 sprite_frames = SubResource("SpriteFrames_487ub")
-animation = &"walkdown"
+animation = &"walkleft"
 
 [node name="HairCurly" type="AnimatedSprite2D" parent="CompositeSprites" unique_id=464077647]
 z_index = 4
@@ -1195,13 +1196,14 @@ animation = &"walkdown"
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_uw77l")
-animation = &"walkdown"
+animation = &"walkright"
 
 [node name="ShortBlue" type="AnimatedSprite2D" parent="CompositeSprites" unique_id=1148230188]
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qavcc")
-animation = &"walkdown"
+animation = &"walkright"
+frame_progress = 0.854335
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1415548712]
 zoom = Vector2(4, 4)
@@ -1209,3 +1211,5 @@ process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="InteractingComponent" parent="." unique_id=537446915 instance=ExtResource("9_hg6s5")]
