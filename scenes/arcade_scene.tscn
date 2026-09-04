@@ -1103,4 +1103,4 @@ shape = SubResource("SegmentShape2D_decei")
 shape = SubResource("SegmentShape2D_ut00t")
 
 [node name="Node2D2" parent="." unique_id=526672248 instance=ExtResource("4_decei")]
-position = Vector2(88, 2)
+position = Vector2(74, -5)

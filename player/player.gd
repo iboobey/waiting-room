@@ -1,7 +1,11 @@
 extends CharacterBody2D
 
-var speed = 65
-var sprint_scale = 1.4
+var speed := 3200
+var sprint_scale := 1.4
+var gravity := 160
+var jump_strength := 120
+var can_jump := false
+var platformer := false
 
 @onready var shoe_anim = $CompositeSprites/ShoeRed
 @onready var torso_anim = $CompositeSprites/TorsoGreen
@@ -12,16 +16,33 @@ var sprint_scale = 1.4
 
 
 
-func move():
+func move(delta):
 	var direction = Input.get_vector("left","right","up","down")
-	velocity = direction * speed
+	velocity = direction * speed * delta
 	if Input.is_action_pressed("run"):
 		velocity = velocity * sprint_scale
+
+
+func platformer_move(delta):
+	var direction = Input.get_axis("left","right")
+	velocity.x = direction * speed * delta
+	jump()
+	apply_gravity(delta)
+
+
+func jump():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and can_jump:
+		velocity.y = -jump_strength
+
+
+func apply_gravity(delta):
+	velocity.y += gravity * delta
+
 
 func walk_animation():
 	var direction_h := Input.get_axis("left","right")
 	var direction_v := Input.get_axis("down","up")
-	var walk_direction : String 
+	var walk_direction : String
 
 	if Input.is_action_pressed("run"):
 		cap_anim.speed_scale = sprint_scale
@@ -31,17 +52,18 @@ func walk_animation():
 		shoe_anim.speed_scale = sprint_scale
 		short_anim.speed_scale = sprint_scale
 		
-	if direction_h != 0 or direction_v != 0: 
+	if direction_h != 0 or direction_v != 0:
 		if direction_h < 0:
 			walk_direction = "walkleft"
 		elif direction_h > 0:
 			walk_direction = "walkright"
 		else:
-			if direction_v < 0:
-				walk_direction = "walkdown"
-			elif direction_v > 0:
+			if not platformer:
+				if direction_v < 0 :
+					walk_direction = "walkdown"
+				elif direction_v > 0:
 					walk_direction = "walkup"
-	else: 
+	else:
 		cap_anim.frame = 0
 		hair_anim.frame = 0
 		head_anim.frame = 0
@@ -56,11 +78,13 @@ func walk_animation():
 	torso_anim.play(walk_direction)
 	shoe_anim.play(walk_direction)
 	short_anim.play(walk_direction)
-	
-	
-	
-func _physics_process(_delta):
+
+
+
+func _physics_process(delta):
 	walk_animation()
-	move()
+	if platformer:
+		platformer_move(delta)
+	else: move(delta)
 	move_and_slide()
 	

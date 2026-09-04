@@ -1159,7 +1159,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1632771296]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1632771296 groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_rkbax")
 
@@ -1213,3 +1213,5 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="InteractingComponent" parent="." unique_id=537446915 instance=ExtResource("9_hg6s5")]
+
+[node name="Timers" type="Node2D" parent="." unique_id=1473143403]
