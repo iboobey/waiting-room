@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 var speed := 3200
-var sprint_scale := 1.4
-var gravity := 160
-var jump_strength := 120
+const sprint_scale := 1.4
+const  gravity := 160
+const  fall_gravity := 180
+var jump_velocity := -120
 var can_jump := false
 var platformer := false
 
@@ -32,11 +33,19 @@ func platformer_move(delta):
 
 func jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor() and can_jump:
-		velocity.y = -jump_strength
+		velocity.y = jump_velocity
+	elif velocity.y < 0.0 and Input.is_action_just_released("jump"):
+		velocity.y *= 0.6
 
 
 func apply_gravity(delta):
-	velocity.y += gravity * delta
+	var applied_gravity 
+	if velocity.y < 0:
+		applied_gravity = gravity
+	else: applied_gravity = fall_gravity
+	
+	if not is_on_floor():
+		velocity.y += applied_gravity * delta
 
 
 func walk_animation():
